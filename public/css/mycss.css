@@ -1,0 +1,15 @@
+:root {
+    --black: #000000;
+    --text: #ffffff;
+    --aqua:aqua ;
+  }
+
+.header-body{
+    background-color: var(--black) !important;
+}
+.text-color{
+    color: aqua !important;
+}
+.bg-color{
+    background-color: var(--aqua) !important;
+}
