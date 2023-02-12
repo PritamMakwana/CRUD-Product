@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('home');
-});
+//select data
+Route::get('/',[TaskController::class,"showData"]);
 //add page show
 Route::view('/add','add'); 
 //add data
 Route::post('/add',[TaskController::class,"addData"]);
+//delete data
+Route::get('delete/{id}',[TaskController::class,"deleteData"]);
