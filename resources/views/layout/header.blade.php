@@ -14,27 +14,27 @@
 </head>
 
 <body>
-        <header>
-            <div class="position-sticky top-0">
-                <nav class="navbar  navbar-expand-lg navbar-dark header-body  bg-danger">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{url('/')}}">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{url('/add')}}">Add</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{url('/update')}}">Update</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" href="{{url('/delete')}}">Delete</a>
-                                </li>
-                            </ul>
-                        </div>
+    <header>
+        <div class="position-sticky top-0">
+            <nav class="navbar  navbar-expand-lg navbar-dark header-body  bg-danger">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="{{url('/')}}">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="{{url('/add')}}">Add</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="{{url('/update')}}">Update</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="{{url('/delete')}}">Delete</a>
+                            </li>
+                        </ul>
                     </div>
-                </nav>
-            </div>
-        </header>
+                </div>
+            </nav>
+        </div>
+    </header>

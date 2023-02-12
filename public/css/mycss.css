@@ -13,3 +13,13 @@
 .bg-color{
     background-color: var(--aqua) !important;
 }
+.form-control{
+    border-radius: 0px !important;
+}
+.form-control:focus {
+    border-color: var(--black) !important;
+    box-shadow: 0 0 0 0.2rem rgba(83, 87, 87, 0.384) !important;
+} 
+.btn{
+    border-radius: 0px !important;
+}
