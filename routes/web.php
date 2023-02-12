@@ -21,3 +21,9 @@ Route::view('/add','add');
 Route::post('/add',[TaskController::class,"addData"]);
 //delete data
 Route::get('delete/{id}',[TaskController::class,"deleteData"]);
+//update Data Show
+Route::get('update/{id}',[TaskController::class,"updateDataShow"]);
+//update Data 
+Route::post('update/{id}',[TaskController::class,"updateData"]);
+
+
