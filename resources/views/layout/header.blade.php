@@ -27,10 +27,7 @@
                                 <a class="nav-link text-light" href="{{url('/add')}}">Add</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" href="{{url('/update')}}">Update</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" href="{{url('/delete')}}">Delete</a>
+                                <a class="nav-link text-light" href="{{url('/search')}}">Search</a>
                             </li>
                         </ul>
                     </div>

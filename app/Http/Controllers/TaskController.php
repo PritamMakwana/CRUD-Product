@@ -109,4 +109,31 @@ class TaskController extends Controller
 
         return redirect('/');
     }
+
+    public function searchPageData()
+    {
+        $product = null;
+        $mess = null;
+        $data = compact('product', 'mess');
+        return view('search')->with($data);
+    }
+
+    public function searchDataShow(Request $req)
+    {
+
+        $search = $req['pro_info'];
+        if ($search != "") {
+            $mess = $search;
+
+            $product = Product::where('p_id', 'LIKE', "%$search%")->orWhere('p_name', 'LIKE', "%$search%")->orWhere('p_price', 'LIKE', "%$search%")->get();
+            if ($product == "[]") {
+                $product = null;
+            }
+        } else {
+            $product = null;
+            $mess = "mess";
+        }
+        $data = compact('product', 'mess');
+        return view('search')->with($data);
+    }
 }

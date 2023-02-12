@@ -14,16 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //select data
-Route::get('/',[TaskController::class,"showData"]);
+Route::get('/', [TaskController::class, "showData"]);
 //add page show
-Route::view('/add','add'); 
+Route::view('/add', 'add');
 //add data
-Route::post('/add',[TaskController::class,"addData"]);
+Route::post('/add', [TaskController::class, "addData"]);
 //delete data
-Route::get('delete/{id}',[TaskController::class,"deleteData"]);
+Route::get('delete/{id}', [TaskController::class, "deleteData"]);
 //update Data Show
-Route::get('update/{id}',[TaskController::class,"updateDataShow"]);
+Route::get('update/{id}', [TaskController::class, "updateDataShow"]);
 //update Data 
-Route::post('update/{id}',[TaskController::class,"updateData"]);
+Route::post('update/{id}', [TaskController::class, "updateData"]);
 
-
+//search Data Page
+Route::get('search', [TaskController::class, "searchPageData"]);
+//search  Data Show
+Route::post('searchPage', [TaskController::class, "searchDataShow"]);
