@@ -3,14 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Dotenv\Validator;
 use Faker\Core\File;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class TaskController extends Controller
 {
 
     public function addData(Request $req)
     {
+
+        $req->validate(
+            [
+                'pro_name' => 'required',
+                'pro_price' => 'required',
+                'pro_image' => 'required'
+            ],
+            [
+                'pro_image.required' => 'The Product Image Upload is required'
+                //customize Message
+            ],
+            [
+                'pro_name' => 'Product Name',
+                'pro_price' => 'Product Price',
+                'pro_image' => 'Product Image'
+                //Customize Attributes Name
+            ]
+        );
+
         $product = new Product();
         $product->p_name = $req['pro_name'];
         $product->p_price = $req['pro_price'];
@@ -52,6 +73,23 @@ class TaskController extends Controller
 
     public function updateData($id, Request $req)
     {
+        $req->validate(
+            [
+                'pro_name' => 'required',
+                'pro_price' => 'required',
+            ],
+            [
+                'pro_image.required' => 'The Product Image Upload is required'
+                //customize Message
+            ],
+            [
+                'pro_name' => 'Product Name',
+                'pro_price' => 'Product Price',
+                'pro_image' => 'Product Image'
+                //Customize Attributes Name
+            ]
+        );
+
         $product = Product::find($id);
         $product->p_name = $req['pro_name'];
         $product->p_price = $req['pro_price'];

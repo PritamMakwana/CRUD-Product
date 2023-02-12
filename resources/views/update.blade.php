@@ -7,10 +7,20 @@
     <div class="mb-3">
         <label class="form-label">Product Name :</label>
         <input type="text" class="form-control" name="pro_name" value="{{$data->p_name}}">
+        <span class="text-danger">
+            @error('pro_name')
+            {{$message}}
+            @enderror
+        </span>
     </div>
     <div class="mb-3">
         <label class="form-label">Product Price :</label>
         <input type="number" class="form-control" name="pro_price" value="{{$data->p_price}}">
+        <span class="text-danger">
+            @error('pro_price')
+            {{$message}}
+            @enderror
+        </span>
     </div>
     <div class="mb-3">
         <label class="form-label">Product Image :</label>
