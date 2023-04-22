@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Product;
 use Dotenv\Validator;
 use Faker\Core\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\Console\Input\Input;
+use Session;
 
 class TaskController extends Controller
 {
@@ -36,13 +39,13 @@ class TaskController extends Controller
         $product->p_name = $req['pro_name'];
         $product->p_price = $req['pro_price'];
 
-        $fileName = time() . "-" .  $req->file('pro_image')->getClientOriginalName();
+        $fileName = time() . "-" . $req->file('pro_image')->getClientOriginalName();
         $req->pro_image->move(public_path('uploads'), $fileName);
 
-        $product->p_image = "uploads\\"  . $fileName;
+        $product->p_image = "uploads\\" . $fileName;
         $product->save();
 
-        return redirect('/');
+        return redirect('/show');
     }
 
     public function showData()
@@ -62,7 +65,7 @@ class TaskController extends Controller
             $product->delete();
         }
 
-        return redirect('/');
+        return redirect('/show');
     }
 
     public function updateDataShow($id)
@@ -94,20 +97,20 @@ class TaskController extends Controller
         $product->p_name = $req['pro_name'];
         $product->p_price = $req['pro_price'];
 
-        //check image upload 
+        //check image upload
         if (!is_null($req->file('pro_image'))) {
             //old image is delete
             if (file_exists(public_path() . "\\" . $product->p_image)) {
                 unlink(public_path() . "\\" . $product->p_image);
             }
             //new add image
-            $fileName = time() . "-" .  $req->file('pro_image')->getClientOriginalName();
+            $fileName = time() . "-" . $req->file('pro_image')->getClientOriginalName();
             $req->pro_image->move(public_path('uploads'), $fileName);
-            $product->p_image = "uploads\\"  . $fileName;
+            $product->p_image = "uploads\\" . $fileName;
         }
         $product->save();
 
-        return redirect('/');
+        return redirect('/show');
     }
 
     public function searchPageData()
@@ -136,4 +139,56 @@ class TaskController extends Controller
         $data = compact('product', 'mess');
         return view('search')->with($data);
     }
+
+    //register
+
+    public function register(Request $req)
+    {
+        $req->validate([
+            'name' => 'required',
+            'email' =>'required| email|unique:authors,email',
+            'password' =>'required | max:12 | min:6'
+        ]);
+
+        $author = new Author();
+        $author->name = $req->name;
+        $author->email= $req->email;
+        $author->password= Hash::make($req->password);
+        $req = $author->save();
+
+        if($req){
+            return back()->with('success','You have registered successfully');
+        }else{
+            return back()->with('fail','Something wrong');
+        }
+    }
+
+    //login
+    public function login(Request $req){
+
+        $req->validate([
+            'email' =>'required| email',
+            'password' =>'required '
+        ]);
+
+        $author = Author::where('email','=',$req->email)->first();
+
+        if($author){
+
+        if(Hash::check($req->password,$author->password)){
+          $req->session()->put('loginID',$author->id);
+        }else{
+            return back()->with('fail','Password not matches');
+        }
+
+    }else{
+        return back()->with('fail','This email is not registered');
+    }
+
+
+    }
+
+
+
 }
+
