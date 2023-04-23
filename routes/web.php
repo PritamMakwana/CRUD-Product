@@ -14,32 +14,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //select data
-Route::get('/show', [TaskController::class, "showData"]);
+Route::get('/show', [TaskController::class, "showData"])->middleware('isloggedIn');
 //add page show
-Route::view('/add', 'add');
+Route::view('/add', 'add')->middleware('isloggedIn');
 //add data
-Route::post('/add', [TaskController::class, "addData"]);
+Route::post('/add', [TaskController::class, "addData"])->middleware('isloggedIn');
 //delete data
-Route::get('delete/{id}', [TaskController::class, "deleteData"]);
+Route::get('delete/{id}', [TaskController::class, "deleteData"])->middleware('isloggedIn');
 //update Data Show
-Route::get('update/{id}', [TaskController::class, "updateDataShow"]);
+Route::get('update/{id}', [TaskController::class, "updateDataShow"])->middleware('isloggedIn');
 //update Data
-Route::post('update/{id}', [TaskController::class, "updateData"]);
+Route::post('update/{id}', [TaskController::class, "updateData"])->middleware('isloggedIn');
 
 //search Data Page
-Route::get('search', [TaskController::class, "searchPageData"]);
+Route::get('search', [TaskController::class, "searchPageData"])->middleware('isloggedIn');
 //search  Data Show
-Route::post('searchPage', [TaskController::class, "searchDataShow"]);
+Route::post('searchPage', [TaskController::class, "searchDataShow"])->middleware('isloggedIn');
 
 
 
 // login
-Route::get('/',[TaskController::class,"loginShowpage"]);
-Route::post('/login-author',[TaskController::class,"login"])->name("login-author");
+Route::get('/',[TaskController::class,"loginShowpage"])->middleware('checklogged');
+Route::post('/login-author',[TaskController::class,"login"])->name("login-author")->middleware('checklogged');
 
 //register
-Route::view('/register','register');
-Route::post('/register-author',[TaskController::class,"register"])->name("register-author");
+Route::view('/register','register')->middleware('checklogged');
+Route::post('/register-author',[TaskController::class,"register"])->name("register-author")->middleware('checklogged');
 
 //logout
-Route::get('/logout',[TaskController::class,'logout']);
+Route::get('/logout',[TaskController::class,'logout'])->middleware('checklogged');
