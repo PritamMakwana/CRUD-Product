@@ -3,6 +3,10 @@
 @section('main-section')
 <h1 class="text-dark text-center mt-4">Products</h1>
 <div class="container-fluid  row justify-content-center mb-5 mt-5">
+    <p>Name : {{$sdata->name}}</p>
+    <p>Email : {{$sdata->email}}</p>
+    <a href="logout" >Logout</a>
+
     <table class="table">
         <thead class="table-dark ">
             <tr>
@@ -12,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($data as $p)
+            @foreach($product as $p)
             <tr>
                 <td class="col-2">
                     <img src="{{$p->p_image}}" height="250" width="250" class="card-img-top " alt="...">

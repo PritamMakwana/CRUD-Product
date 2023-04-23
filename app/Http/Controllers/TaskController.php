@@ -51,7 +51,16 @@ class TaskController extends Controller
     public function showData()
     {
         $product = Product::all();
-        return view('home', ['data' => $product]);
+
+        if(Session::has('loginID')){
+            $sdata= Author::where('id','=',Session::get('loginID'))->first();
+        }
+
+        $data = compact('product', 'sdata');
+        // return view('search')->with($data);
+        return view('home')->with($data);
+
+
     }
 
     public function deleteData($id)
@@ -177,6 +186,7 @@ class TaskController extends Controller
 
         if(Hash::check($req->password,$author->password)){
           $req->session()->put('loginID',$author->id);
+          return redirect('/show');
         }else{
             return back()->with('fail','Password not matches');
         }
@@ -188,7 +198,18 @@ class TaskController extends Controller
 
     }
 
+    public function loginShowpage(){
+        return view('login');
+    }
 
+    //logout
+    public function logout(){
+        if(Session::has('loginID')){
+            Session::pull('loginID');
+            return redirect('/');
+        }
+        return redirect('/');
+    }
 
 }
 

@@ -34,9 +34,12 @@ Route::post('searchPage', [TaskController::class, "searchDataShow"]);
 
 
 // login
-Route::view('/','login');
+Route::get('/',[TaskController::class,"loginShowpage"]);
 Route::post('/login-author',[TaskController::class,"login"])->name("login-author");
 
 //register
 Route::view('/register','register');
 Route::post('/register-author',[TaskController::class,"register"])->name("register-author");
+
+//logout
+Route::get('/logout',[TaskController::class,'logout']);
